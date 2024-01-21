@@ -43,8 +43,6 @@ const Post = ({ uid, time, message }) => {
             {user.name}
           </Link>
           <div className="flex items-center w-fit">
-            <p>{time}</p>
-            <LuDot />
             <BiWorld />
           </div>
         </div>
