@@ -18,7 +18,7 @@ const Post = () => {
     const { picture, name, time, message } = user;
 
   return (
-    <div className="flex flex-col bg-white h-1/5 w-1/3 rounded-lg text-black p-3">
+    <div className="flex flex-col bg-gray-200 h-1/5 w-1/3 rounded-lg text-black p-3">
       <div className="flex w-fit">
         <Image
           src={picture}
