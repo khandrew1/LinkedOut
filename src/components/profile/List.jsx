@@ -53,7 +53,7 @@ const List = ({
     setFriendList(false);
     setOppList(false);
     setModal(false);
-  }
+  };
 
   return (
     <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-10 w-1/3 h-auto max-h-[60%] min-h-[60%] rounded-xl overflow-y-scroll bg-gray-300">
@@ -64,11 +64,16 @@ const List = ({
           <div>{oppList && "Opp List"}</div>
         </div>
         <div className="flex flex-col h-full">
-          {friends
+          {friendList && friends
             ? friends.map((friend, idx) => (
                 <ListItem name={friend.name} picture={friend.image} key={idx} />
               ))
-            : "Loading..."}
+            : ""}
+          {oppList && opps
+            ? opps.map((opp, idx) => (
+                <ListItem name={opp.name} picture={opp.image} key={idx} />
+              ))
+            : ""}
         </div>
       </div>
     </div>

@@ -41,25 +41,31 @@ export async function GET(req) {
     const friends = [];
     const opps = [];
 
-    const friendQuery = query(
-      collection(db, "users"),
-      where("__name__", "in", friendUIDs),
-    );
-    const oppQuery = query(
-      collection(db, "users"),
-      where("__name__", "in", oppUIDs),
-    );
+    console.log(friendUIDs.length);
+    console.log(oppUIDs.length);
 
-    const friendQuerySnap = await getDocs(friendQuery);
-    const oppQuerySnap = await getDocs(oppQuery);
+    if (friendUIDs.length !== 0) {
+      const friendQuery = query(
+        collection(db, "users"),
+        where("__name__", "in", friendUIDs),
+      );
+      const friendQuerySnap = await getDocs(friendQuery);
+      friendQuerySnap.forEach((doc) => {
+        friends.push(doc.data());
+      });
+    }
 
-    friendQuerySnap.forEach((doc) => {
-      friends.push(doc.data());
-    });
-
-    oppQuerySnap.forEach((doc) => {
-      opps.push(doc.data());
-    });
+    if (oppUIDs.length !== 0) {
+      console.log("RUN!")
+      const oppQuery = query(
+        collection(db, "users"),
+        where("__name__", "in", oppUIDs),
+      );
+      const oppQuerySnap = await getDocs(oppQuery);
+      oppQuerySnap.forEach((doc) => {
+        opps.push(doc.data());
+      });
+    }
 
     return res.json(
       {

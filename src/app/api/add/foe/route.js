@@ -9,16 +9,19 @@ export async function POST(req) {
 
   try {
     const newOpp = {
-        uid: oppID
-    }
+      uid: oppID,
+    };
 
     const newPost = {
       uid: userID,
       message: `${oppName} and I are no longer friends.`,
       date: new Date(),
-    }
+    };
 
-    const docRef = await addDoc(collection(db, "users", userID, "opps"), newOpp);
+    const docRef = await addDoc(
+      collection(db, "users", userID, "opps"),
+      newOpp,
+    );
     const postDocRef = await addDoc(collection(db, "posts"), newPost);
 
     return res.json({ message: "OK", items: newOpp }, { status: 200 });

@@ -27,17 +27,19 @@ const Profile = ({ name, picture, uid }) => {
   const addFriend = async (uid, friendID) => {
     await fetch("/api/add/friend", {
       method: "POST",
-      body: JSON.stringify({ userID: uid, friendID: friendID, friendName: name }),
-    })
-      .catch((e) => console.log(e));
+      body: JSON.stringify({
+        userID: uid,
+        friendID: friendID,
+        friendName: name,
+      }),
+    }).catch((e) => console.log(e));
   };
 
   const addOpp = async (uid, oppID) => {
     await fetch("/api/add/foe", {
       method: "POST",
       body: JSON.stringify({ userID: uid, oppID: oppID, oppName: name }),
-    })
-      .catch((e) => console.log(e));
+    }).catch((e) => console.log(e));
   };
 
   return (
@@ -65,7 +67,9 @@ const Profile = ({ name, picture, uid }) => {
           <p className="flex font-bold items-center text-3xl mr-8">{name}</p>
           <div className="flex auto justify-between w-full">
             <button
-              onClick={own ? openFriendList : () => addFriend(session.user.id, uid)}
+              onClick={
+                own ? openFriendList : () => addFriend(session.user.id, uid)
+              }
               className="bg-green-300 w-full rounded-full"
             >
               {own ? `Friends` : `Add`}

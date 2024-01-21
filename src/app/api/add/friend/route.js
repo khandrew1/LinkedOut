@@ -9,16 +9,19 @@ export async function POST(req) {
 
   try {
     const newFriend = {
-        uid: friendID
-    }
+      uid: friendID,
+    };
 
     const newPost = {
       uid: userID,
       message: `${friendName} and I are now friends!!`,
       date: new Date(),
-    }
+    };
 
-    const docRef = await addDoc(collection(db, "users", userID, "friends"), newFriend);
+    const docRef = await addDoc(
+      collection(db, "users", userID, "friends"),
+      newFriend,
+    );
     const postDocRef = await addDoc(collection(db, "posts"), newPost);
 
     return res.json({ message: "OK", items: newFriend }, { status: 200 });

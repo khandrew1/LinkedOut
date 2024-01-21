@@ -5,7 +5,7 @@ import { FaSearch } from "react-icons/fa";
 import { signIn, signOut } from "next-auth/react";
 import Link from "next/link";
 
-const Header = ({uid}) => {
+const Header = ({ uid }) => {
   return (
     <div className="h-14 bg-white flex justify-between text-black">
       <div className="flex p-3 items-center">
@@ -22,7 +22,7 @@ const Header = ({uid}) => {
       </div>
       <div className="flex p-3 space-x-5">
         <Link href={`/profile/P8BXaVFJatPcwsXehu05`}>
-        <CgProfile className="text-3xl" onClick={() => signOut()} />
+          <CgProfile className="text-3xl" onClick={() => signOut()} />
         </Link>
       </div>
     </div>
