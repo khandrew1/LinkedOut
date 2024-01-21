@@ -5,7 +5,14 @@ import { useEffect, useState } from "react";
 const ListItem = ({ name, picture }) => {
   return (
     <div className="flex border-b-2 border-gray-400 w-full gap-3 p-2">
-      <div className="h-16 w-16 bg-red-300 rounded-full" />
+      <Image
+        src={picture}
+        unoptimzed={true}
+        height={16}
+        width={14}
+        alt={`${name}'s profile picture}`}
+        className="rounded-full h-16 w-16"
+      />
       <p className="flex items-center">{name}</p>
     </div>
   );
@@ -23,17 +30,17 @@ const List = ({ setModal, uid }) => {
         });
         const data = await response.json();
 
-        setFriends(data.friends);
-        setOpps(data.opps);
-
         console.log(data);
+
+        setFriends(data.items.friends);
+        setOpps(data.items.opps);
       } catch (e) {
         console.log(e);
       }
     };
 
     fetchLists();
-  }, [uid]);
+  }, []);
 
   return (
     <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-10 w-1/3 h-auto max-h-[60%] min-h-[60%] rounded-xl overflow-y-scroll bg-gray-300">
@@ -43,13 +50,11 @@ const List = ({ setModal, uid }) => {
           <div>Friend List</div>
         </div>
         <div className="flex flex-col h-full">
-          <ListItem name="Andrew Khadder" />
-          <ListItem name="Andrew Khadder" />
-          <ListItem name="Andrew Khadder" />
-          <ListItem name="Andrew Khadder" />
-          <ListItem name="Andrew Khadder" />
-          <ListItem name="Andrew Khadder" />
-          <ListItem name="Andrew Khadder" />
+          {friends
+            ? friends.map((friend, idx) => (
+                <ListItem name={friend.name} picture={friend.image} key={idx} />
+              ))
+            : "Loading..."}
         </div>
       </div>
     </div>
