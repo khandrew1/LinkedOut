@@ -4,9 +4,7 @@ import Protected from "@/components/Protected";
 const Page = () => {
   return (
     <Protected>
-      <div className="h-full flex flex-col items-center gap-3">
-        <Posts />
-      </div>
+      <Posts />
     </Protected>
   );
 };
