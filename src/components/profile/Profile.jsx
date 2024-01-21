@@ -13,9 +13,7 @@ const Profile = ({ name, picture }) => {
           className="bg-gray-400 rounded-full w-40 h-40 flex items-center m-6"
         />
         <div className="flex flex-col gap-y-3">
-          <p className="flex font-bold items-center text-3xl mr-8">
-            {name}
-          </p>
+          <p className="flex font-bold items-center text-3xl mr-8">{name}</p>
           <div className="flex auto justify-between w-full">
             <button className="bg-green-300 w-full rounded-full">Add</button>
             <button className="bg-red-500 w-full rounded-full">OPP</button>
