@@ -24,6 +24,22 @@ const Profile = ({ name, picture, uid }) => {
     setOppList(true);
   };
 
+  const addFriend = async (uid, friendID) => {
+    await fetch("/api/add/friend", {
+      method: "POST",
+      body: JSON.stringify({ userID: uid, friendID: friendID, friendName: name }),
+    })
+      .catch((e) => console.log(e));
+  };
+
+  const addOpp = async (uid, oppID) => {
+    await fetch("/api/add/foe", {
+      method: "POST",
+      body: JSON.stringify({ userID: uid, oppID: oppID, oppName: name }),
+    })
+      .catch((e) => console.log(e));
+  };
+
   return (
     <div className="bg-gray-300 w-1/2 h-1/2 rounded-lg flex">
       {modal && (
@@ -49,13 +65,13 @@ const Profile = ({ name, picture, uid }) => {
           <p className="flex font-bold items-center text-3xl mr-8">{name}</p>
           <div className="flex auto justify-between w-full">
             <button
-              onClick={own ? openFriendList : () => console.log("smth")}
+              onClick={own ? openFriendList : () => addFriend(session.user.id, uid)}
               className="bg-green-300 w-full rounded-full"
             >
               {own ? `Friends` : `Add`}
             </button>
             <button
-              onClick={own ? openOppList : () => console.log("smth")}
+              onClick={own ? openOppList : () => addOpp(session.user.id, uid)}
               className="bg-red-500 w-full rounded-full"
             >
               {own ? `OPP LIST` : `OPP`}
