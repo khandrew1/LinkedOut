@@ -1,18 +1,13 @@
-"use client";
-
-import Post from "@/components/Post";
-import { useSession, signOut } from "next-auth/react";
+import Posts from "@/components/feed/Posts";
+import Protected from "@/components/Protected";
 
 const Page = () => {
-
-  const { data: session } = useSession();
-
   return (
-    <div className="h-full flex flex-col justify-center items-center gap-3">
-      <Post />
-      <Post />
-      <button onClick={() => signOut()}>log</button>
-    </div>
+    <Protected>
+      <div className="h-full flex flex-col items-center gap-3">
+        <Posts />
+      </div>
+    </Protected>
   );
 };
 

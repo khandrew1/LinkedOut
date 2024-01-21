@@ -3,7 +3,6 @@ import "./globals.css";
 import Header from "../components/Header";
 import Session from "@/components/Session";
 
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -15,10 +14,7 @@ export default function RootLayout({ children, session }) {
   return (
     <html lang="en">
       <body className={`${inter.className} h-screen`}>
-        <Session session={session}>
-        <Header />
-        {children}
-        </Session>
+        <Session session={session}>{children}</Session>
       </body>
     </html>
   );
