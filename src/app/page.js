@@ -1,5 +1,5 @@
 "use client";
-import { signIn } from "next-auth/react";
+import { signIn, signOut } from "next-auth/react";
 
 export default function Home() {
   return (
@@ -9,6 +9,7 @@ export default function Home() {
       </p>
       <div className="flex gap-3">
         <button onClick={() => signIn("google")}>Login</button>
+        <button onClick={() => signOut()}>sign out</button>
       </div>
     </div>
   );

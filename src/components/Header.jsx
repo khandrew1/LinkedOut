@@ -3,14 +3,15 @@
 import { CgProfile } from "react-icons/cg";
 import { FaSearch } from "react-icons/fa";
 import { signIn, signOut } from "next-auth/react";
+import Link from "next/link";
 
-const Header = () => {
+const Header = ({uid}) => {
   return (
     <div className="h-14 bg-white flex justify-between text-black">
       <div className="flex p-3 items-center">
-        <div className="text-black" onClick={() => signIn("google")}>
+        <Link className="text-black" href="/feed">
           Linked<span className="line-through">Out</span>
-        </div>
+        </Link>
       </div>
       <div className="relative w-full flex items-center">
         <input
@@ -20,7 +21,9 @@ const Header = () => {
         <FaSearch className="text-1xl absolute top-5 left-2" />
       </div>
       <div className="flex p-3 space-x-5">
+        <Link href={`/profile/P8BXaVFJatPcwsXehu05`}>
         <CgProfile className="text-3xl" onClick={() => signOut()} />
+        </Link>
       </div>
     </div>
   );
