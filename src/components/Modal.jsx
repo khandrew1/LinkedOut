@@ -2,16 +2,24 @@
 import Image from "next/image";
 import { useState } from "react";
 
-const Modal = ({ name, picture, setModal, uid }) => {
+const Modal = ({ name, picture, setModal, uid, posts, setPosts }) => {
   const [message, setMessage] = useState("");
 
   const addPost = async () => {
+    const newPost = {
+      uid: uid,
+      message: message,
+      date: new Date(),
+    }
+
     await fetch("/api/posts", {
       method: "POST",
       body: JSON.stringify({ uid: uid, message: message, date: new Date() }),
     })
       .then(() => setModal(false))
       .catch((e) => console.log(e));
+
+      setPosts([newPost, ...posts])
   };
 
   return (

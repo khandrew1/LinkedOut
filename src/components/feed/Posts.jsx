@@ -10,18 +10,12 @@ const Posts = () => {
   const [modal, setModal] = useState(false);
   const [posts, setPosts] = useState([]);
 
-  const newPost = {
-    uid: "P8BXaVFJatPcwsXehu05",
-    message: "ughhhhh",
-    date: new Date(),
-  };
-
   useEffect(() => {
     const fetchPosts = async () => {
       const response = await fetch("/api/posts", { method: "GET" });
       const data = await response.json();
 
-      setPosts(data.items);
+      setPosts(data.items.reverse());
     };
 
     fetchPosts();
@@ -35,6 +29,8 @@ const Posts = () => {
           picture={session.user.image}
           uid={session.user.id}
           setModal={setModal}
+          posts={posts}
+          setPosts={setPosts}
         />
       )}
       <button
