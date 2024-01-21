@@ -1,5 +1,4 @@
 "use client";
-import picture from "./IMG_8502.jpg";
 import Image from "next/image";
 
 const Modal = ({ name, pfp, setModal }) => {
