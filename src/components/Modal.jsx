@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 
-const Modal = ({ name, pfp, setModal }) => {
+const Modal = ({ name, picture, setModal }) => {
   return (
     <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-10 w-1/2 h-3/5 rounded-xl">
       <div className="flex flex-col bg-gray-300 rounded-xl h-full text-code-white p-4 gap-y-5">

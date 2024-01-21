@@ -14,7 +14,7 @@ const Posts = () => {
       {modal && (
         <Modal
           name={session.user.name}
-          pfp={session.user.image}
+          picture={session.user.image}
           setModal={setModal}
         />
       )}
