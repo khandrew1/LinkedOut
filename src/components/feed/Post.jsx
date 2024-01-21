@@ -5,6 +5,7 @@ import Image from "next/image";
 import { FaRegHeart } from "react-icons/fa";
 import { FaRegComment } from "react-icons/fa";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 const Post = ({ uid, time, message }) => {
   const [user, setUser] = useState(null);
@@ -35,7 +36,12 @@ const Post = ({ uid, time, message }) => {
           className="bg-gray-400 rounded-full w-14 h-14 flex items-center"
         />
         <div className="p-1">
-          <p className="flex items-center font-bold">{user.name}</p>
+          <Link
+            href={`/profile/${uid}`}
+            className="flex items-center font-bold"
+          >
+            {user.name}
+          </Link>
           <div className="flex items-center w-fit">
             <p>{time}</p>
             <LuDot />

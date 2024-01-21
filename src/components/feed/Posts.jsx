@@ -1,5 +1,4 @@
 "use client";
-
 import { useSession } from "next-auth/react";
 import Post from "./Post";
 import Modal from "@/components/Modal";
@@ -27,12 +26,6 @@ const Posts = () => {
 
     fetchPosts();
   }, []);
-
-  const addPost = async () => {
-    await fetch("/api/posts", { method: "POST", body: JSON.stringify(newPost) })
-      .then(() => console.log("success"))
-      .catch((e) => console.log(e));
-  };
 
   return (
     <div className="h-full flex flex-col items-center gap-3">

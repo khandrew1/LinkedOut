@@ -25,7 +25,7 @@ const Page = ({ params }) => {
     <Protected>
       <div className="h-full flex justify-center items-center">
         {user ? (
-          <Profile name={user.name} picture={user.picture} />
+          <Profile name={user.name} picture={user.picture} uid={params.id} />
         ) : (
           "Loading..."
         )}

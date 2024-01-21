@@ -1,7 +1,7 @@
-import Modal from "@/components/Modal";
+import List from "@/components/profile/List";
 
 const Page = () => {
-  return <Modal />;
+  return <List />;
 };
 
 export default Page;
