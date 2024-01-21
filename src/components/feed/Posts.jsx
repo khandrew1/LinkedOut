@@ -30,7 +30,7 @@ const Posts = () => {
 
   const addPost = async () => {
     await fetch("/api/posts", { method: "POST", body: JSON.stringify(newPost) })
-      .then(() => console.log(success))
+      .then(() => console.log("success"))
       .catch((e) => console.log(e));
   };
 
@@ -40,6 +40,7 @@ const Posts = () => {
         <Modal
           name={session.user.name}
           picture={session.user.image}
+          uid={session.user.id}
           setModal={setModal}
         />
       )}
