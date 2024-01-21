@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const ListItem = ({ name, picture }) => {
   return (
@@ -12,6 +12,29 @@ const ListItem = ({ name, picture }) => {
 };
 
 const List = ({ setModal, uid }) => {
+  const [friends, setFriends] = useState([]);
+  const [opps, setOpps] = useState([]);
+
+  useEffect(() => {
+    const fetchLists = async () => {
+      try {
+        const response = await fetch(`/api/list?uid=P8BXaVFJatPcwsXehu05`, {
+          method: "GET",
+        });
+        const data = await response.json();
+
+        setFriends(data.friends);
+        setOpps(data.opps);
+
+        console.log(data);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+
+    fetchLists();
+  }, [uid]);
+
   return (
     <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-10 w-1/3 h-auto max-h-[60%] min-h-[60%] rounded-xl overflow-y-scroll bg-gray-300">
       <div className="flex flex-col rounded-xl h-full text-code-white p-4 gap-y-5">

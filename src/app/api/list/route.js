@@ -1,6 +1,13 @@
 import { NextResponse } from "next/server";
 import { db } from "@/util/firebase";
-import { collection, getDocs, getDoc, doc } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  getDoc,
+  doc,
+  query,
+  where,
+} from "firebase/firestore";
 
 export async function GET(req) {
   const res = NextResponse;
@@ -23,20 +30,43 @@ export async function GET(req) {
 
     friendsSnapshot.forEach((doc) => {
       const data = doc.data();
-      friendUIDs.push(data);
+      friendUIDs.push(data.uid);
     });
 
     oppSnapshot.forEach((doc) => {
       const data = doc.data();
-      oppUIDs.push(data);
+      oppUIDs.push(data.uid);
+    });
+
+    const friends = [];
+    const opps = [];
+
+    const friendQuery = query(
+      collection(db, "users"),
+      where("__name__", "in", friendUIDs),
+    );
+    const oppQuery = query(
+      collection(db, "users"),
+      where("__name__", "in", oppUIDs),
+    );
+
+    const friendQuerySnap = await getDocs(friendQuery);
+    const oppQuerySnap = await getDocs(oppQuery);
+
+    friendQuerySnap.forEach((doc) => {
+      friends.push(doc.data());
+    });
+
+    oppQuerySnap.forEach((doc) => {
+      opps.push(doc.data());
     });
 
     return res.json(
       {
         message: "OK",
         items: {
-          friendUIDs: friendUIDs,
-          oppUIDs: oppUIDs,
+          friends: friends,
+          opps: opps,
         },
       },
       { status: 200 },
