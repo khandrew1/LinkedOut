@@ -3,11 +3,24 @@
 import { useSession } from "next-auth/react";
 import Post from "./Post";
 import Modal from "@/components/Modal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Posts = () => {
   const { data: session } = useSession();
+
   const [modal, setModal] = useState(false);
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const response = await fetch("/api/posts", { method: "GET" });
+      const data = await response.json();
+
+      setPosts(data.items);
+    };
+
+    fetchPosts();
+  }, []);
 
   return (
     <div className="h-full flex flex-col items-center gap-3">
@@ -24,12 +37,9 @@ const Posts = () => {
       >
         Post
       </button>
-      <Post
-        name={session.user.name}
-        picture={session.user.image}
-        time="1w"
-        message="I'm happy to share that I'm no longer friends with David Chong!"
-      />
+      {posts.map((post, idx) => (
+        <Post uid={post.uid} time="1w" message={post.message} key={idx} />
+      ))}
     </div>
   );
 };

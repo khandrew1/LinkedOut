@@ -1,12 +1,10 @@
-"use client";
 import Posts from "@/components/feed/Posts";
 import Protected from "@/components/Protected";
 
 const Page = () => {
-
   return (
     <Protected>
-        <Posts />
+      <Posts />
     </Protected>
   );
 };
