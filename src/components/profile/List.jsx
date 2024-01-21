@@ -18,7 +18,14 @@ const ListItem = ({ name, picture }) => {
   );
 };
 
-const List = ({ setModal, uid }) => {
+const List = ({
+  setModal,
+  uid,
+  friendList,
+  setFriendList,
+  oppList,
+  setOppList,
+}) => {
   const [friends, setFriends] = useState([]);
   const [opps, setOpps] = useState([]);
 
@@ -42,12 +49,19 @@ const List = ({ setModal, uid }) => {
     fetchLists();
   }, []);
 
+  const closeModal = () => {
+    setFriendList(false);
+    setOppList(false);
+    setModal(false);
+  }
+
   return (
     <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-10 w-1/3 h-auto max-h-[60%] min-h-[60%] rounded-xl overflow-y-scroll bg-gray-300">
       <div className="flex flex-col rounded-xl h-full text-code-white p-4 gap-y-5">
         <div className="flex justify-between w-full">
-          <button onClick={() => setModal(false)}>X</button>
-          <div>Friend List</div>
+          <button onClick={closeModal}>X</button>
+          <div>{friendList && "Friend List"}</div>
+          <div>{oppList && "Opp List"}</div>
         </div>
         <div className="flex flex-col h-full">
           {friends

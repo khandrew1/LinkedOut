@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
-import Modal from "../Modal";
 import List from "./List";
 
 const Profile = ({ name, picture, uid }) => {
@@ -12,10 +11,31 @@ const Profile = ({ name, picture, uid }) => {
   const own = uid === session.user.id;
 
   const [modal, setModal] = useState(false);
+  const [friendList, setFriendList] = useState(false);
+  const [oppList, setOppList] = useState(false);
+
+  const openFriendList = () => {
+    setModal(true);
+    setFriendList(true);
+  };
+
+  const openOppList = () => {
+    setModal(true);
+    setOppList(true);
+  };
 
   return (
     <div className="bg-gray-300 w-1/2 h-1/2 rounded-lg flex">
-      {modal && <List uid={session.user.id} setModal={setModal} />}
+      {modal && (
+        <List
+          uid={session.user.id}
+          setModal={setModal}
+          friendList={friendList}
+          setFriendList={setFriendList}
+          oppList={oppList}
+          setOppList={setOppList}
+        />
+      )}
       <div className="flex h-fit items-center">
         <Image
           src={picture}
@@ -29,12 +49,15 @@ const Profile = ({ name, picture, uid }) => {
           <p className="flex font-bold items-center text-3xl mr-8">{name}</p>
           <div className="flex auto justify-between w-full">
             <button
-              onClick={own ? () => setModal(true) : () => console.log("smth")}
+              onClick={own ? openFriendList : () => console.log("smth")}
               className="bg-green-300 w-full rounded-full"
             >
               {own ? `Friends` : `Add`}
             </button>
-            <button className="bg-red-500 w-full rounded-full">
+            <button
+              onClick={own ? openOppList : () => console.log("smth")}
+              className="bg-red-500 w-full rounded-full"
+            >
               {own ? `OPP LIST` : `OPP`}
             </button>
           </div>
