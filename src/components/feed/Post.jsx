@@ -4,10 +4,10 @@ import { BiWorld } from "react-icons/bi";
 import Image from "next/image";
 import { FaRegHeart } from "react-icons/fa";
 import { FaRegComment } from "react-icons/fa";
-import { useEffect, useState } from "react"; 
+import { useEffect, useState } from "react";
 
 const Post = ({ uid, time, message }) => {
-  const [ user, setUser ] = useState(null);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -15,17 +15,16 @@ const Post = ({ uid, time, message }) => {
         method: "GET",
       });
       const data = await response.json();
-      
+
       console.log(data.items);
       setUser(data.items);
     };
 
     fetchUser();
-  }, [uid])
+  }, [uid]);
 
-  return (
-    user ? (
-      <div className="flex flex-col bg-gray-200 h-1/5 w-1/3 rounded-lg text-black p-3 gap-3">
+  return user ? (
+    <div className="flex flex-col bg-gray-200 h-1/5 w-1/3 rounded-lg text-black p-3 gap-3">
       <div className="flex w-fit gap-1">
         <Image
           src={user.picture}
@@ -50,7 +49,8 @@ const Post = ({ uid, time, message }) => {
         <FaRegComment />
       </div>
     </div>
-    ) : "Loading..."
+  ) : (
+    "Loading..."
   );
 };
 

@@ -11,6 +11,12 @@ const Posts = () => {
   const [modal, setModal] = useState(false);
   const [posts, setPosts] = useState([]);
 
+  const newPost = {
+    uid: "P8BXaVFJatPcwsXehu05",
+    message: "ughhhhh",
+    date: new Date(),
+  };
+
   useEffect(() => {
     const fetchPosts = async () => {
       const response = await fetch("/api/posts", { method: "GET" });
@@ -21,6 +27,12 @@ const Posts = () => {
 
     fetchPosts();
   }, []);
+
+  const addPost = async () => {
+    await fetch("/api/posts", { method: "POST", body: JSON.stringify(newPost) })
+      .then(() => console.log(success))
+      .catch((e) => console.log(e));
+  };
 
   return (
     <div className="h-full flex flex-col items-center gap-3">
