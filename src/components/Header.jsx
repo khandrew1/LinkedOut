@@ -4,20 +4,19 @@ import { IoHome } from "react-icons/io5";
 
 const Header = () => {
   return (
-    <div className="h-20 bg-white flex justify-between text-black">
-      <div className="flex p-3">
-        <p className="text-black">LinkedOut</p>
-        <div className="relative w-full">
-          <input
-            className="bg-gray-300 pl-8 pr-2"
-            placeholder="Search..."
-          ></input>
-          <FaSearch className="text-1xl absolute top-1 left-2" />
-        </div>
+    <div className="h-14 bg-white flex justify-between text-black">
+      <div className="flex p-3 items-center">
+        <p className="text-black">Linked<span className="line-through">Out</span></p>
       </div>
+      <div className="relative w-full flex items-center">
+          <input
+            className="bg-gray-300 pl-8 pr-2 w-full rounded-lg"
+            placeholder="Search..."
+          />
+          <FaSearch className="text-1xl absolute top-5 left-2" />
+        </div>
       <div className="flex p-3 space-x-5">
-        <IoHome className="text-5xl" />
-        <CgProfile className="text-5xl" />
+        <CgProfile className="text-3xl" />
       </div>
     </div>
   );
