@@ -7,8 +7,8 @@ import { useSession } from "next-auth/react";
 
 const Post = ({ name, picture, time, message }) => {
   return (
-    <div className="flex flex-col bg-gray-200 h-1/5 w-1/3 rounded-lg text-black p-3">
-      <div className="flex w-fit">
+    <div className="flex flex-col bg-gray-200 h-1/5 w-1/3 rounded-lg text-black p-3 gap-3">
+      <div className="flex w-fit gap-1">
         <Image
           src={picture}
           unoptimized={true}
